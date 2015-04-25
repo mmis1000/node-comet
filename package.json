@@ -16,6 +16,7 @@
   "scripts": {
     "demo": "node demo"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com:mmis1000/node-comet.git"
