@@ -15,5 +15,9 @@
   },
   "scripts": {
     "demo": "node demo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mmis1000/node-comet.git"
   }
 }
