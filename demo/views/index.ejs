@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chat room demo</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet" type="text/css" />
+    <link href="/index.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/index.js"></script>
+  </head>
+  <body>
+    <div id="words">
+      <% words.forEach(function (word) { %>
+        <div>
+          <span><%= new Date(word.time).toUTCString() %> </span>
+          <br class="desktop"> 
+          <span><%= word.nick %> : <%= word.word %></div></span>
+      <% }); %>
+    </div>
+    <div class="input">
+      <input type="text" name="nick" id="nick" placeholder="nick"/>
+      <input type="text" name="word" id="word" placeholder="words to say..."/> <br>
+      <button id="say">say</button>
+    </div>
+  </body>
+</html>

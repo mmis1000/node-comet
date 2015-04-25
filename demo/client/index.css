@@ -1,0 +1,45 @@
+.input {
+  position : fixed;
+  top : 0px;
+  left : 0px;
+  right : 0px;
+  background : white;
+  text-align : center;
+  white-space : nowrap;
+  line-height : 30px;
+}
+#words {
+  position :fixed;
+  top : 60px;
+  left : 0px;
+  right : 0px;
+  bottom : 0px;
+  overflow : auto;
+}
+#nick {
+  width : 30%;
+  height : 30px;
+  border : 0px;
+  padding : 0px;
+  line-height : 30px;
+}
+#word {
+  width : 70%;
+  height : 30px;
+  border : 0px;
+  padding : 0px;
+  line-height : 30px;
+  border-left : 1px solid #cccccc;
+}
+#say {
+  width : 100%;
+  height : 30px;
+  border : 0px;
+  padding : 0px;
+  line-height : 30px;
+}
+@media only screen and (min-width: 400px) {
+  .desktop {
+    display : none;
+  }
+}
