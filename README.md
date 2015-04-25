@@ -1,4 +1,4 @@
-*** A comet server with easy use api
+### A comet server with easy use api
 
 ```
   //server (with express 4.x)
