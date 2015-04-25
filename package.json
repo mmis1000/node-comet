@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "A easy use comet api implement.",
   "main": "index.js",
-  "repository": "",
   "author": "Mmis1000<mmis1000@yahoo.com.tw>",
   "dependencies": {
     "coffee-script": "^1.9.2",
