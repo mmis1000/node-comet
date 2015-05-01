@@ -1,6 +1,6 @@
 {
   "name": "comet-server",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A easy use comet api implement.",
   "main": "index.js",
   "author": "Mmis1000<mmis1000@yahoo.com.tw>",

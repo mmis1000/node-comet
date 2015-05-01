@@ -4,7 +4,7 @@ DataList = require './data_list'
 Path = require 'path'
 
 class Client
-  constructor: (@id, @listenType, @comet, @timeWait = 4, @timeInterval = 10000)->
+  constructor: (@id, @listenType, @comet, @timeWait = 4, @timeInterval = 10000, @maxIdleCount = 30)->
     @removeCountdown = 10;
     @waitRemove = false
     
@@ -13,12 +13,17 @@ class Client
     @requests = []
     
     @offsets.add @comet.getOffsets @listenType
+    @intervalId = null
+    
+    @liveCountDown = @maxIdleCount
+    
     @startAutoReply()
     
-    @intervalId = null
+    
     
   startAutoReply: ()->
     @intervalId = setInterval ()=>
+      @liveCountDown--
       for req in @requests
         req.countDown--
         if req.countDown is 0
@@ -27,10 +32,26 @@ class Client
       
       @requests = @requests.filter (req)-> req.waitRemove isnt true
       
+      @checkAlive()
     , @timeInterval
+  
+  checkAlive: ()->
+    #console.log "check alive #{@liveCountDown} #{@removeCountdown}"
+    if @liveCountDown == 0 or @removeCountdown == 0
+      @destroy()
+  
+  destroy: ()->
+    for client in @requests
+      @sendReSync client.req, client.res
+    @requests = []
+    clearInterval @intervalId
+    @waitRemove = true
+    @comet.notifyRemove()
+    #console.log "client #{@id} destroyed"
   
   handleRequest: (req, res, next, offset)->
     @removeCountdown = 10
+    @liveCountDown = @maxIdleCount
     if not @offsets.get offset
       @sendReSync req, res, next
       return
@@ -49,10 +70,7 @@ class Client
     
   notifyNewData: ()->
     @removeCountdown--
-    if @removeCountdown == 0
-      @waitRemove = true
-      clearInterval @intervalId
-      @comet.notifyRemove()
+    @checkAlive()
       
     #console.log @offsets.getLast(), @comet.getOffsets @listenType
     datas = @comet.queryData @offsets.getLast() 
