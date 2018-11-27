@@ -1,5 +1,7 @@
 ### A comet server with easy use api
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mmis1000/node-comet.svg)](https://greenkeeper.io/)
+
 ```
   //server (with express 4.x)
   var Comet = require("./lib/comet");
